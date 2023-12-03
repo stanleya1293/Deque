@@ -15,7 +15,11 @@ public:
   int size();
   int operator[](int index);
 private:
-  int** blockmap;
+  int** block_map;
+  int map_size;
+  int tot_size;
+  const static int block_size = 5;
+  int first_block, first_element;
 };
 
 #endif
