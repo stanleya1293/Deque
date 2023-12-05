@@ -4,12 +4,13 @@
 using namespace std;
 
 int main() {
-  Deque d;
+  Deque d; // Crat an instance of the Deque class
   int choice;
   int value;
   int index;
   bool running = true;
   while (running) {
+    // Display menu options
     cout << "-----------------------------------" << endl
 	 << "        Welcome to the deque!      " << endl
 	 << "       Please enter a command      " << endl
@@ -27,30 +28,31 @@ int main() {
 	 << "11. exit                           " << endl
 	 << "-----------------------------------" << endl
 	 << "-----------------------------------" << endl;
-    cin >> choice;
+    cin >> choice; // Get user input for menu choice
     cout << "-----------------------------------" << endl;
+    // Process user choice
     switch (choice) {
     case 1:
       cout << "What value would you like to push? ";
       cin >> value;
-      d.push_front(value);
+      d.push_front(value); // Call the push_front method of the Deque class
       break;
     case 2:
       cout << "What value would you like to push? ";
       cin >> value;
-      d.push_back(value);
+      d.push_back(value); // Call the push_back method of the Deque class
       break;
     case 3:
-      d.pop_front();
+      d.pop_front(); // Call the pop_front method of the Deque class
       break;
     case 4:
-      d.pop_back();
+      d.pop_back(); // Call the pop_back method of the Deque class
       break;
     case 5:
-      cout << d.front() << endl;
+      cout << d.front() << endl; // Call the front method of the Deque class and print the result
       break;
     case 6:
-      cout << d.back() << endl;
+      cout << d.back() << endl; // Call the back method of the Deque class and print the result
       break;
     case 7:
       if (d.empty()) {
@@ -61,18 +63,18 @@ int main() {
       }
       break;
     case 8:
-      cout << d[index] << endl;
+      cout << d[index] << endl; // Call the operator[] method of the Deque class and print the result
       break;
     case 9:
       for (int i = 0; i < d.size(); i++) {
-	cout << d[i] << endl;
+	cout << d[i] << endl; // Iterate through the Deque and print each element
       }
       break;
     case 10:
-      cout << d.size() << endl;
+      cout << d.size() << endl; // Call the size method of the Deque class and print the result
       break;
     case 11:
-      running = false;
+      running = false; // Exit the loop
       break;
     }
   }

@@ -2,6 +2,7 @@
 #include <iostream>
 
 Deque::Deque() {
+  // Initialize the deque with initial values
   map_size = 2;
   block_map = new int* [map_size];
   block_map[0] = new int [block_size];
@@ -14,6 +15,7 @@ Deque::Deque() {
 }
 
 Deque::~Deque() {
+  // Destructor to release memory
   for (int i = 0; i < map_size; i++) {
     delete block_map[i];
   }
@@ -21,17 +23,19 @@ Deque::~Deque() {
 }
 
 void Deque::push_front(int value) {
+  // Check if the current block is full
   if (!block_map[first_block][first_element]) {
     block_map[first_block][first_element] = value;
     tot_size++;
   }
+  // Check if there is space in the current block to insert at the front
   else if (first_element > 0) {
     first_element--;
     block_map[first_block][first_element] = value;
     tot_size++;
   }
   else {
-    //resize
+    //used to resize if necessary
     int** new_map = new int* [map_size + 1];
     for (int i = 1; i <= map_size; i++) {
       new_map[i] = block_map[i - 1];
@@ -47,6 +51,7 @@ void Deque::push_front(int value) {
 }
 
 void Deque::pop_front() {
+  // Remove the front element and update indices
   block_map[first_block][first_element] = NULL;
   first_element++;
   if (first_element = 5) {
@@ -57,10 +62,12 @@ void Deque::pop_front() {
 }
 
 void Deque::push_back(int value) {
+  // Check if the current block is full
   if (!block_map[last_block][last_element]) {
     block_map[last_block][last_element] = value;
     tot_size++;
   }
+  // Check if there is space in the current block to insert at the back
   else if (last_element < 5) {
     last_element++;
     block_map[last_block][last_element] = value;
@@ -83,6 +90,7 @@ void Deque::push_back(int value) {
 }
 
 void Deque::pop_back() {
+  // Remove the back element and update indices
   block_map[last_block][last_element] = NULL;
   last_element--;
   if (last_element < 0) {
@@ -93,14 +101,17 @@ void Deque::pop_back() {
 }
 
 int Deque::front() {
+  // Return the front element
   return (block_map[first_block][first_element]);
 }
 
 int Deque::back() {
+  // Return the back element
   return (block_map[last_block][last_element]);
 }
 
 bool Deque::empty() {
+  // Check if the deque is empty
   if (!block_map[first_block][first_element] && !block_map[last_block][last_element])
     return true;
   else
@@ -108,10 +119,12 @@ bool Deque::empty() {
 }
 
 int Deque::size() {
+  // Return the total size of the deque
   return tot_size;
 }
 
 int Deque::operator[](int index) {
+  // Retrieve the element at the given index
   int block, element;
   block = first_block + ((first_element + index) / block_size);
   element = (first_element + index) % block_size;
