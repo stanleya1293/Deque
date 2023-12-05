@@ -32,13 +32,27 @@ void Deque::push_front(int value) {
   }
   else {
     //resize
-    
+    int** new_map = new int* [map_size + 1];
+    for (int i = 1; i <= map_size; i++) {
+      new_map[i] = block_map[i - 1];
+    }
+    new_map[0] = new int [block_size];
+    first_element = 4;
+    first_block = 0;
+    new_map[first_block][first_element] = value;
+    delete [] block_map;
+    block_map = new_map;
+    tot_size++;
   }
 }
 
 void Deque::pop_front() {
   block_map[first_block][first_element] = NULL;
   first_element++;
+  if (first_element = 5) {
+    first_block++;
+    
+  }
   tot_size--;
 }
 
@@ -71,6 +85,10 @@ void Deque::push_back(int value) {
 void Deque::pop_back() {
   block_map[last_block][last_element] = NULL;
   last_element--;
+  if (last_element < 0) {
+    last_element = 0;
+    last_block--;
+  }
   tot_size--;
 }
 
